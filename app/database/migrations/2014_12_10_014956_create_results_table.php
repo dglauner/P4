@@ -33,6 +33,8 @@ class CreateResultsTable extends Migration {
 	 */
 	public function down()
 	{
+		DB::statement('SET FOREIGN_KEY_CHECKS=0'); # Disable FK constraints so that all rows can be deleted, even if there's an associated FK
+		DB::statement('TRUNCATE results');
 		Schema::drop('results');
 	}
 

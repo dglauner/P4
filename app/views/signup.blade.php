@@ -5,6 +5,8 @@
 @stop
 
 @section('content')
+
+
 	<div class="jumbotron">
 			
 		{{ Form::open(array('url' => '/signup')) }}

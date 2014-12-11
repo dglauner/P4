@@ -12,7 +12,7 @@
 */
 
 
-/* testing stuff  
+/* testing stuff  */
 
 Route::get('/get-environment',function() {
 
@@ -28,14 +28,43 @@ Route::get('/trigger-error',function() {
 
 });
 
-Route::get('/test', 
-    array(
-        'before' => 'auth', 
-        function() {
-            return View::make('test');
-        }
-    )
-);
+/*
+Route::get('/test', function()
+{
+    try
+    {			
+		
+		$user = new User;
+		$user->email      = 'david.glauner@gmail.com';
+		$user->password   = Hash::make('123456');
+		$user->save();
+		
+		$exercise = new Exercise;
+		$exercise->desc = 'Pull Ups';
+		$exercise->user()->associate($user); # Equivalent of $exercise->user_id = $user->id
+		$exercise->save();
+		
+		$result = new Result;
+		$result->exercise()->associate($exercise); 
+		$result->work_out_date = '2014-04-04';
+		$result->sets = 3;
+		$result->reps = 10;
+		$result->weight = 80;
+		$result->save();
+				
+		$back = Category::create(array('desc' => 'Back'));
+		$exercise->Categorys()->attach($back);
+		echo 'Done';
+	}
+	catch (Exception $e)
+	{
+		echo '<strong style="background-color:crimson; padding:5px;">Caught exception: ', $e->getMessage(), "</strong>\n";
+
+	}
+
+		
+});
+*/
 
 Route::get('mysql-test', function() {
 
@@ -50,7 +79,7 @@ Route::get('mysql-test', function() {
 
 });
 
- testing stuff  */
+
  
  # /app/routes.php
 Route::get('/debug', function() {
@@ -98,6 +127,8 @@ Route::get('/debug', function() {
 
 });
 
+/* testing stuff  */
+
 Route::get('/', function()
 {
 	return Redirect::to('/main');
@@ -114,3 +145,7 @@ Route::post('/signup', 'UserController@postSignup');
 Route::get('/login', 'UserController@getLogin');
 Route::post('/login', 'UserController@postLogin');
 Route::get('/logout', 'UserController@getLogout');
+/* exercise stuff */
+Route::get('/exercise/index', 'ExerciseController@getIndex');
+Route::post('/exercise/index', 'ExerciseController@postIndex');
+

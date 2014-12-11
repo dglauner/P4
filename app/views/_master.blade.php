@@ -12,14 +12,18 @@
 	 	@if(Session::get('flash_message'))
 	        <div class="bg-danger">{{ Session::get('flash_message') }}</div>
 	    @endif
+	    @foreach($errors->all() as $message)
+			<div class='bg-danger'>{{ $message }}</div>
+		@endforeach
+
 
       	<div class="navbar navbar-default">
 			<!-- header -->
 			<h1 class="text-center">Fitness Tracker</h1>
 			@if(Auth::check())
-			    <a href='/logout'>Log out {{ Auth::user()->email; }}</a>
+			    <a href='/logout' class="btn btn-primary btn-xs">Log out {{ Auth::user()->email; }}</a>
 			@else 
-			    <a href='/signup'>Sign up</a> or <a href='/login'>Log in</a>
+			    <a href='/signup' class="btn btn-primary btn-xs">Sign up</a> or <a href='/login' class="btn btn-primary btn-xs">Log in</a>
 			@endif
 		</div>
 

@@ -8,6 +8,12 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
+	
+	public function exercise() {
+        # User has many Exercises
+        # Define a one-to-many relationship.
+        return $this->hasMany('Exercise');
+    }
 
 	/**
 	 * The database table used by the model.

@@ -5,6 +5,12 @@
 @stop
 
 @section('content')
+
+	@foreach($errors->all() as $message)
+		<div class='error'>{{ $message }}</div>
+	@endforeach
+
+
 	{{ Form::open(array('url' => '/login')) }}
 	
 	    Email<br>

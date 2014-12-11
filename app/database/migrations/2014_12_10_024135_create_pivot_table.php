@@ -12,11 +12,11 @@ class CreatePivotTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('exercise_catagory', function($table) {
+		Schema::create('category_exercise', function($table) {
 		$table->integer('exercise_id')->unsigned();
-		$table->integer('catagory_id')->unsigned();
+		$table->integer('category_id')->unsigned();
 		$table->foreign('exercise_id')->references('id')->on('exercises');
-		$table->foreign('catagory_id')->references('id')->on('catagorys');
+		$table->foreign('category_id')->references('id')->on('categories');
 		}); 
 	}
 
@@ -27,7 +27,9 @@ class CreatePivotTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('exercise_catagory');
+		DB::statement('SET FOREIGN_KEY_CHECKS=0'); # Disable FK constraints so that all rows can be deleted, even if there's an associated FK
+		DB::statement('TRUNCATE category_exercise');
+		Schema::drop('category_exercise');
 	}
 
 }

@@ -12,7 +12,7 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('catagorys', function($table) {
+		Schema::create('categories', function($table) {
 		
 		    $table->increments('id');
 		    $table->string('desc');
@@ -27,7 +27,9 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('catagorys');
+		DB::statement('SET FOREIGN_KEY_CHECKS=0'); # Disable FK constraints so that all rows can be deleted, even if there's an associated FK
+		DB::statement('TRUNCATE categories');
+		Schema::drop('categories');
 	}
 
 }

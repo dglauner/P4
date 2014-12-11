@@ -51,6 +51,14 @@ App::error(function(Exception $exception, $code)
 	Log::error($exception);
 });
 
+/* Debug Bar */
+if(Config::get('app.debug_bar') == true) {
+	Debugbar::enable();
+}
+else {
+	Debugbar::disable();
+}
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler

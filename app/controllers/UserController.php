@@ -73,7 +73,7 @@ class UserController extends BaseController {
 		$credentials = Input::only('email', 'password');
 
 		# Note we don't have to hash the password before attempting to auth - Auth::attempt will take care of that for us
-		if (Auth::attempt($credentials, $remember = false)) {
+		if (Auth::attempt($credentials, $remember = true)) {
 			return Redirect::intended('/')->with('flash_message', 'Welcome Back!');
 		}
 		else {
