@@ -139,13 +139,23 @@ Route::get('/signup', 'UserController@getSignup');
 Route::post('/signup', 'UserController@postSignup');
 Route::get('/login', 'UserController@getLogin');
 Route::post('/login', 'UserController@postLogin');
-Route::get('/logout', 'UserController@getLogout');
-/* exercise stuff */
+
+/* Logged in users only */
 Route::group(array('before' => 'auth'), function()
 {
+	Route::get('/logout', 'UserController@getLogout');
+	/* exercise stuff */
 	Route::get('/exercise/index', 'ExerciseController@getIndex');
 	Route::post('/exercise/index', 'ExerciseController@postIndex');
 	Route::get('/exercise/add', 'ExerciseController@getAdd');
 	Route::post('/exercise/add', 'ExerciseController@postAdd');
+	Route::get('/exercise/edit/{id}', 'ExerciseController@getEdit');
+	Route::post('/exercise/edit', 'ExerciseController@postEdit');
+	Route::get('/category/edit/{id}', 'CategoryController@getEdit');
+	Route::post('/category/edit', 'CategoryController@postEdit');
+	Route::get('/category/add', 'CategoryController@getAdd');
+	Route::post('/category/add', 'CategoryController@postAdd');
+
+
 });
 

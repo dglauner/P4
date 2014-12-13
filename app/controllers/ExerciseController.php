@@ -19,11 +19,6 @@ class ExerciseController extends BaseController
         return View::make('exercise_index')
         	->with('exercises', $exercises);
     }
-
-    public function postIndex()
-    {
-        //return View::make('single');
-    }
     
     public function getAdd()
     {
@@ -32,15 +27,15 @@ class ExerciseController extends BaseController
     
     public function postAdd()
     {
-    	# Step 1) Define the rules
+
 		$rules = array(
 			'title' => 'required'
 		);
 
-		# Step 2)
+
 		$validator = Validator::make(Input::all(), $rules);
 
-		# Step 3
+
 		if($validator->fails()) {
 
 			return Redirect::to('/exercise/add')
@@ -48,8 +43,6 @@ class ExerciseController extends BaseController
 				->withInput()
 				->withErrors($validator);
 		}
-
-    	
     	
     	$exercise = new Exercise;
 		$exercise->desc = Input::get('title');
@@ -72,5 +65,79 @@ class ExerciseController extends BaseController
 		return Redirect::to('/exercise/index');
 
     }
+    
+    public function getEdit($id)
+    {
+       try{ 
+       $exercise = Exercise::where('user_id', '=', Auth::id())
+        	->findorfail($id);
+       }catch(Exception $e){
+       
+			$errorvalue = Helper::getErrorMessage($e);
+
+			return Redirect::to('/exercise/index')
+				->with('flash_message', 'Edit Failed...')
+				->withErrors($errorvalue);
+       }
+        return View::make('exercise_edit')
+        	->with('exercise', $exercise);
+      
+    }
+
+    public function postEdit()
+    {
+    	# Step 1) Define the rules
+		$rules = array(
+			'desc' => 'required'
+		);
+
+		# Step 2)
+		$validator = Validator::make(Input::all(), $rules);
+
+		# Step 3
+		if($validator->fails()) {
+
+			return Redirect::to('/exercise/Edit')
+				->with('flash_message', ' validator: Edit failed; Please try again.')
+				->withInput()
+				->withErrors($validator);
+		}
+
+    	
+		try {
+	        $exercise = Exercise::findOrFail(Input::get('id'));
+	    }
+	    catch(exception $e) {
+	        $errorvalue = Helper::getErrorMessage($e);
+
+	        return Redirect::to('/exercise/index')
+				->with('flash_message', 'Open: Edit failed; Exercise not found!')
+				->withInput()
+				->withErrors($errorvalue);
+
+	    }    	
+    	
+		$exercise->desc = Input::get('desc');
+		
+		try {
+			$exercise->save();
+		}
+		catch (Exception $e) {
+		
+			$errorvalue = Helper::getErrorMessage($e);
+
+			return Redirect::to('/exercise/edit/'.Input::get('id'))
+				->with('flash_message', 'Save: Edit failed; please try again.')
+				->withErrors($errorvalue);
+
+		}
+
+		
+		return Redirect::to('/exercise/index');
+
+    }
+
+    
+    
 
 }
