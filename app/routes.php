@@ -131,12 +131,7 @@ Route::get('/debug', function() {
 
 Route::get('/', function()
 {
-	return Redirect::to('/main');
-});
-
-Route::get('/main', function()
-{
-	return View::make('main');
+	return Redirect::to('/exercise/index');
 });
 
 /* User Stuff */
@@ -146,6 +141,11 @@ Route::get('/login', 'UserController@getLogin');
 Route::post('/login', 'UserController@postLogin');
 Route::get('/logout', 'UserController@getLogout');
 /* exercise stuff */
-Route::get('/exercise/index', 'ExerciseController@getIndex');
-Route::post('/exercise/index', 'ExerciseController@postIndex');
+Route::group(array('before' => 'auth'), function()
+{
+	Route::get('/exercise/index', 'ExerciseController@getIndex');
+	Route::post('/exercise/index', 'ExerciseController@postIndex');
+	Route::get('/exercise/add', 'ExerciseController@getAdd');
+	Route::post('/exercise/add', 'ExerciseController@postAdd');
+});
 

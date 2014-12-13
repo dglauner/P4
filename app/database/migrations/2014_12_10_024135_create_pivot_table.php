@@ -17,6 +17,7 @@ class CreatePivotTable extends Migration {
 		$table->integer('category_id')->unsigned();
 		$table->foreign('exercise_id')->references('id')->on('exercises');
 		$table->foreign('category_id')->references('id')->on('categories');
+		$table->unique(array('exercise_id', 'category_id'));
 		}); 
 	}
 

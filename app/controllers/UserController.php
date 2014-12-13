@@ -54,7 +54,7 @@ class UserController extends BaseController {
 		# Log in
 		Auth::login($user);
 
-		return Redirect::to('/main')->with('flash_message', 'Welcome to Fitness Tracker!');
+		return Redirect::to('/exercise/index')->with('flash_message', 'Welcome to Fitness Tracker!');
 		
 
     }
@@ -74,7 +74,7 @@ class UserController extends BaseController {
 
 		# Note we don't have to hash the password before attempting to auth - Auth::attempt will take care of that for us
 		if (Auth::attempt($credentials, $remember = true)) {
-			return Redirect::intended('/')->with('flash_message', 'Welcome Back!');
+			return Redirect::intended('/exercise/index')->with('flash_message', 'Welcome Back!');
 		}
 		else {
 			return Redirect::to('/login')

@@ -19,7 +19,8 @@
 
       	<div class="navbar navbar-default">
 			<!-- header -->
-			<h1 class="text-center">Fitness Tracker</h1>
+			<h1 class="text-center">@yield('page_title','Fitness Tracker')</h1>
+
 			@if(Auth::check())
 			    <a href='/logout' class="btn btn-primary btn-xs">Log out {{ Auth::user()->email; }}</a>
 			@else 

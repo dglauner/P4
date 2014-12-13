@@ -10,16 +10,26 @@
 		<div class='error'>{{ $message }}</div>
 	@endforeach
 
-
-	{{ Form::open(array('url' => '/login')) }}
+	{{Form::open(['url' => '/login', 'method' => 'post', 'class' => 'form-horizontal'])}}  
+		<div class="control-group">
+			{{Form::label('email', 'E-Mail Address', array('class' => 'control-label'))}}
+			<div class="controls">
+				{{Form::email('email', '', array('class' => 'form-control', 'placeholder' => 'Email'))}}
+			</div>
+		</div>
+		<div class="control-group">
+		{{Form::label('password', 'password', array('class' => 'control-label'))}}
+			<div class="controls">
+				{{Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password'))}}
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				{{Form::submit('Login', array('class' => 'btn'))}}
+			</div>
+		</div>
+	{{Form::close()}}
 	
-	    Email<br>
-	    {{ Form::text('email') }}<br><br>
 	
-	    Password:<br>
-	    {{ Form::password('password') }}<br><br>
 	
-	    {{ Form::submit('Submit') }}
-	
-	{{ Form::close() }}
 @stop

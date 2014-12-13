@@ -19,6 +19,7 @@ class CreateExerciseTable extends Migration {
 		    $table->string('desc');
 		    $table->timestamps();
 			$table->foreign('user_id')->references('id')->on('users'); 
+			$table->unique(array('user_id', 'desc'));
 		});
 
 	}
