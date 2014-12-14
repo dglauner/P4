@@ -98,7 +98,7 @@ class ExerciseController extends BaseController
 		if($validator->fails()) {
 
 			return Redirect::to('/exercise/Edit')
-				->with('flash_message', ' validator: Edit failed; Please try again.')
+				->with('flash_message', 'Edit failed; Please try again.')
 				->withInput()
 				->withErrors($validator);
 		}
@@ -111,7 +111,7 @@ class ExerciseController extends BaseController
 	        $errorvalue = Helper::getErrorMessage($e);
 
 	        return Redirect::to('/exercise/index')
-				->with('flash_message', 'Open: Edit failed; Exercise not found!')
+				->with('flash_message', 'Edit failed; Exercise not found!')
 				->withInput()
 				->withErrors($errorvalue);
 
@@ -127,7 +127,7 @@ class ExerciseController extends BaseController
 			$errorvalue = Helper::getErrorMessage($e);
 
 			return Redirect::to('/exercise/edit/'.Input::get('id'))
-				->with('flash_message', 'Save: Edit failed; please try again.')
+				->with('flash_message', 'Edit failed; please try again.')
 				->withErrors($errorvalue);
 
 		}

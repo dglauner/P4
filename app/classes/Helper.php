@@ -17,4 +17,43 @@ class Helper {
 
         return $message;
     }
+    
+    public static function addCategory($id, $exId)
+    {
+    	
+    	try
+    	{
+    		$exercise = Exercise::where('user_id', '=', Auth::id())
+        		->findorfail($exId);
+    		$cat = Category::findorfail($id);
+    		if(!$exercise->categories->contains($cat)) 
+    		{
+				$exercise->Categories()->attach($cat);
+			}
+    	}
+    	catch(Exception $e)
+    	{
+    		//on error resume next
+    	}
+    }
+
+	public static function removeCategory($id, $exId)
+    {
+    	try
+    	{
+    		$exercise = Exercise::where('user_id', '=', Auth::id())
+        		->findorfail($exId);
+    		$cat = Category::findorfail($id);
+    		if($exercise->categories->contains($cat))
+    		{
+				$exercise->Categories()->detach($cat);
+			}	
+    	}
+    	catch(Exception $e)
+    	{
+    		//on error resume next
+    	}
+
+    }
+
 }
