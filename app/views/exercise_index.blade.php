@@ -34,6 +34,6 @@
 	</tbody>
 </table>
 <a title="Add A New Exercise" href="/exercise/add" class="btn btn-default">Add New Exercise</a>
-
+<a title="Add A New Category" href="/category/add" class="btn btn-default">Add/edit Categories</a>
 </div>
 @stop

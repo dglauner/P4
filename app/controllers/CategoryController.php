@@ -77,22 +77,65 @@ class CategoryController extends BaseController
     
     public function getAdd()
     {
-        $categories = Category::ALL();
-        	
-   		foreach($categories as $category)
-    	{
-    		echo Pre::render($category);
-    	}
-    	
-	    #return View::make('category_edit')
-    	#->with('exercise', $exercise);
-
-        	                
+        $categories = Category::ALL();    	
+	    return View::make('category_add')
+    	->with('categories', $categories);
+  	                
     }
     
 	public function postAdd()
     {
-    	echo 'post Add';
+    	$category = new Category;
+		$category->desc = Input::get('desc');
+		$category->save();
+		return Redirect::to('/category/add');
+    }
+    
+    public function getDelete($id)
+    {
+    	try
+    	{
+    		Category::destroy($id);
+    		return Redirect::to('/category/add');
+    	}
+    	catch (Exception $e)
+    	{
+			$errorvalue = Helper::getErrorMessage($e);
+
+			return Redirect::to('/category/add')
+				->with('flash_message', 'Delete failed; please try again.')
+				->withErrors($errorvalue);
+
+    	}
+    }
+
+    public function getUpdate($id)
+    {
+        try
+        {
+        	$category = Category::findorfail($id);   
+        }
+    	catch (Exception $e)
+    	{
+			$errorvalue = Helper::getErrorMessage($e);
+
+			return Redirect::to('/exercise/index')
+				->with('flash_message', 'Update failed; please try again.')
+				->withErrors($errorvalue);
+
+    	}
+	
+	    return View::make('category_update')
+    	->with('category', $category);
+  	                
+    }
+    
+	public function postUpdate()
+    {
+    	#$category = new Category;
+		#$category->desc = Input::get('desc');
+		#$category->save();
+		#return Redirect::to('/category/add');
     }
 
 

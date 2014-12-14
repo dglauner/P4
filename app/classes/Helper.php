@@ -10,6 +10,10 @@ class Helper {
 		{
 			$message = 'Id Not Found';
 		}
+		elseif(str_contains($e->getMessage(), 'a foreign key constraint fails') == true)
+		{
+			$message = 'Cannot Delete While In Use';
+		}
 		else
 		{
 			$message = $e->getMessage();

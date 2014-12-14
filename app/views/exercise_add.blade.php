@@ -15,11 +15,11 @@
 		{{ Form::open(array('url' => '/exercise/add')) }}
 		
 			{{ Form::label('title','Add New Exercise:') }}
-			{{ Form::text('title'); }}
+			{{ Form::text('title') }}
 				
-		    {{ Form::submit('Submit') }}
-		
+		    {{ Form::submit('Save' , array('class' => 'btn btn-default')) }}
+			<a href="/exercise/index" class="btn btn-default">Cancel</a>
 		{{ Form::close() }}
-		<a href="/exercise/index" class="btn btn-default">Cancel</a>
+		
 </div>
 @stop

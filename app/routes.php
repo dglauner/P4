@@ -151,11 +151,14 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('/exercise/add', 'ExerciseController@postAdd');
 	Route::get('/exercise/edit/{id}', 'ExerciseController@getEdit');
 	Route::post('/exercise/edit', 'ExerciseController@postEdit');
+	/* category stuff */
 	Route::get('/category/edit/{id}', 'CategoryController@getEdit');
 	Route::post('/category/edit', 'CategoryController@postEdit');
 	Route::get('/category/add', 'CategoryController@getAdd');
 	Route::post('/category/add', 'CategoryController@postAdd');
-
+	Route::get('/category/delete/{id}', 'CategoryController@getDelete');
+	Route::get('/category/update/{id}', 'CategoryController@getUpdate');
+	Route::post('/category/update', 'CategoryController@postUpdate');
 
 });
 
