@@ -22,6 +22,7 @@ class CreateResultsTable extends Migration {
 			$table->Integer('weight');
 		    $table->timestamps();
 			$table->foreign('exercise_id')->references('id')->on('exercises'); 
+			$table->unique(array('exercise_id', 'work_out_date'));
 		});
 
 	}

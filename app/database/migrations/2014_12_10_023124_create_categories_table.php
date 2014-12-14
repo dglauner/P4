@@ -15,7 +15,7 @@ class CreateCategoriesTable extends Migration {
 		Schema::create('categories', function($table) {
 		
 		    $table->increments('id');
-		    $table->string('desc');
+		    $table->string('desc')->unique();
 		    $table->timestamps();
 		});
 	}
