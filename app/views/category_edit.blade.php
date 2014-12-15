@@ -12,7 +12,7 @@
 @section('content')
 	<div class="jumbotron">
 	
-		<h2>Edit Categories</h2>
+		<h2>Edit Categories for {{ $exercise['desc'] }}</h2>
 		{{ Form::open(array('url' => '/category/edit')) }}
 			<input type="hidden" name="cats[]" value="-1"/>
 			<input type="hidden" name="exId" value="{{ $exercise['id'] }}"/>

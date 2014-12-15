@@ -5,7 +5,7 @@
 @stop
 
 @section('page_title')
-	Fitness Tracker: Edit Exercise Name
+	Fitness Tracker: Edit Category Name
 @stop
 
 
@@ -14,14 +14,14 @@
 <h2>Update A Category</h2>
 		{{ Form::open(array('url' => '/category/update')) }}
 		
-			{{ Form::hidden('id',$id); }}
+			{{ Form::hidden('id',$category['id']) }}
 			
 			{{ Form::label('desc','Update Catagory:') }}
-			{{ Form::text('desc', $exercise['desc']) }}
+			{{ Form::text('desc', $category['desc']) }}
 				
-		    {{ Form::submit('Submit') }}
-		
+		    {{ Form::submit('Submit', array('class' => 'btn btn-default')) }}
+			<a href="/category/add" class="btn btn-default">Cancel</a>
 		{{ Form::close() }}
-		<a href="/exercise/index" class="btn btn-default">Cancel</a>
+		
 </div>
 @stop

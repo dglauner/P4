@@ -12,7 +12,7 @@ class ExerciseController extends BaseController
     public function getIndex()
     {
         
-        $exercises = Exercise::with('categories')
+        $exercises = Exercise::with('categories','results')
         	->where('user_id', '=', Auth::id())
         	->get();
                 
@@ -137,7 +137,24 @@ class ExerciseController extends BaseController
 
     }
 
-    
+    public function getDelete($id)
+    {
+       try{ 
+       $exercise = Exercise::where('user_id', '=', Auth::id())
+        	->findorfail($id);
+        $exercise->delete();
+        	
+       }catch(Exception $e){
+       
+			$errorvalue = Helper::getErrorMessage($e);
+
+			return Redirect::to('/exercise/index')
+				->with('flash_message', 'Delete Failed...')
+				->withErrors($errorvalue);
+       }
+       return Redirect::to('/exercise/index');
+    }
+
     
 
 }

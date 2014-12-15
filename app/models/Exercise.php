@@ -24,7 +24,7 @@ class Exercise extends Eloquent {
 
     }
     
-    public function result() {
+    public function results() {
         # Exercise has many Results
         # Define a one-to-many relationship.
         return $this->hasMany('Result');

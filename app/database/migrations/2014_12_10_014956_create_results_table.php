@@ -21,7 +21,7 @@ class CreateResultsTable extends Migration {
 		    $table->tinyInteger('reps');
 			$table->Integer('weight');
 		    $table->timestamps();
-			$table->foreign('exercise_id')->references('id')->on('exercises'); 
+			$table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('cascade'); 
 			$table->unique(array('exercise_id', 'work_out_date'));
 		});
 

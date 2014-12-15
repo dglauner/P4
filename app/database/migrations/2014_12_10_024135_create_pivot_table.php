@@ -15,7 +15,7 @@ class CreatePivotTable extends Migration {
 		Schema::create('category_exercise', function($table) {
 		$table->integer('exercise_id')->unsigned();
 		$table->integer('category_id')->unsigned();
-		$table->foreign('exercise_id')->references('id')->on('exercises');
+		$table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('cascade');
 		$table->foreign('category_id')->references('id')->on('categories');
 		$table->unique(array('exercise_id', 'category_id'));
 		}); 

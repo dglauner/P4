@@ -12,7 +12,9 @@
 	<thead>
 		<tr>
 			<td>Exercise</td>
+			<td>Delete</td>
 			<td>Categories</td>
+			<td>Recent Results</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,13 +22,23 @@
 		    @foreach($exercises as $exercise)
 		    <tr>	
 		    	<td>
-		    		<a title="Edit This Exercise" href="/exercise/edit/{{$exercise['id']}}" class="btn btn-large btn-block btn-primary">{{$exercise['desc']}}</a>
+		    		<a title="Edit This Exercise" href="/exercise/edit/{{$exercise['id']}}" class="btn  btn-block btn-primary">{{$exercise['desc']}}</a>
+		    		
+		    	</td>
+		    	<td>
+		    		<a title="Delete This Exercise" href="/exercise/delete/{{$exercise['id']}}" class="btn btn-default">Delete</a>
 		    	</td>
 		    	<td>
 				    @foreach($exercise->categories as $category)	
 				    	<button class="btn btn-large btn-primary disabled">{{$category['desc']}}</button>
 				    @endforeach
 				    <a title="Set Categories For This Exercise" href="/category/edit/{{$exercise['id']}}" class="btn btn-default">Set</a>
+			    </td>
+			    <td><a title="Add or Edit Results for this exercise" href="/result/index/{{$exercise['id']}}" class="btn btn-default btn-block">
+				    Date:{{$exercise->results->first()['work_out_date']}}<br/>
+			    	Weight:{{$exercise->results->first()['weight']}}<br/>
+			    	Sets:{{$exercise->results->first()['sets']}}<br/>
+			    	Reps:{{$exercise->results->first()['reps']}}</a>
 			    </td>
 			</tr>
 		    @endforeach

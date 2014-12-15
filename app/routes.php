@@ -150,6 +150,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/exercise/add', 'ExerciseController@getAdd');
 	Route::post('/exercise/add', 'ExerciseController@postAdd');
 	Route::get('/exercise/edit/{id}', 'ExerciseController@getEdit');
+	Route::get('/exercise/delete/{id}', 'ExerciseController@getDelete');
 	Route::post('/exercise/edit', 'ExerciseController@postEdit');
 	/* category stuff */
 	Route::get('/category/edit/{id}', 'CategoryController@getEdit');
@@ -159,6 +160,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/category/delete/{id}', 'CategoryController@getDelete');
 	Route::get('/category/update/{id}', 'CategoryController@getUpdate');
 	Route::post('/category/update', 'CategoryController@postUpdate');
+	/* Results Stuff */
+	Route::get('/result/add', 'ResultController@getAdd');
+	Route::post('/result/add', 'ResultController@postAdd');
+	Route::get('/result/index/{id}', 'ResultController@getIndex');
+	Route::post('/result/index', 'ResultController@postIndex');
 
 });
 
