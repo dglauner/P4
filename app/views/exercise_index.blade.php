@@ -22,7 +22,7 @@
 		    @foreach($exercises as $exercise)
 		    <tr>	
 		    	<td>
-		    		<a title="Edit This Exercise" href="/exercise/edit/{{$exercise['id']}}" class="btn  btn-block btn-primary">{{$exercise['desc']}}</a>
+		    		<a title="Edit This Exercise" href="/exercise/edit/{{$exercise['id']}}" class="btn  btn-block btn-primary">{{{$exercise['desc']}}}</a>
 		    		
 		    	</td>
 		    	<td>
@@ -30,15 +30,19 @@
 		    	</td>
 		    	<td>
 				    @foreach($exercise->categories as $category)	
-				    	<button class="btn btn-large btn-primary disabled">{{$category['desc']}}</button>
+				    	<button class="btn btn-large btn-primary disabled">{{{$category['desc']}}}</button>
 				    @endforeach
 				    <a title="Set Categories For This Exercise" href="/category/edit/{{$exercise['id']}}" class="btn btn-default">Set</a>
 			    </td>
 			    <td><a title="Add or Edit Results for this exercise" href="/result/index/{{$exercise['id']}}" class="btn btn-default btn-block">
-				    Date:{{$exercise->results->first()['work_out_date']}}<br/>
-			    	Weight:{{$exercise->results->first()['weight']}}<br/>
-			    	Sets:{{$exercise->results->first()['sets']}}<br/>
-			    	Reps:{{$exercise->results->first()['reps']}}</a>
+			    	@if($exercise->results->count() > 0)
+					    Date:{{ date('m/d/Y', strtotime($exercise->results->sortByDesc('work_out_date')->first()['work_out_date']))}}<br/>
+				    	Weight:{{$exercise->results->first()['weight']}}<br/>
+				    	Sets:{{$exercise->results->first()['sets']}}<br/>
+				    	Reps:{{$exercise->results->first()['reps']}}</a>
+			    	@else
+			    		Click to add Results!
+			    	@endif
 			    </td>
 			</tr>
 		    @endforeach

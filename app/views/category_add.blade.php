@@ -17,7 +17,7 @@
 		<tr>
 			<td>
 				<a href="/category/update/{{$category['id']}}" class="btn btn-default">Edit</a>&nbsp;
-				<a href="/category/delete/{{$category['id']}}" class="btn btn-default">Delete</a>&nbsp;&nbsp;&nbsp;<strong>{{$category['desc']}}</strong>
+				<a href="/category/delete/{{$category['id']}}" class="btn btn-default">Delete</a>&nbsp;&nbsp;&nbsp;<strong>{{{$category['desc']}}}</strong>
 			</td>
 		</tr>
  	@endforeach
@@ -29,11 +29,12 @@
 				{{ Form::text('desc'); }}
 					
 			    {{ Form::submit('Save' , array('class' => 'btn btn-default')) }}
-				<a href="/exercise/index" class="btn btn-default">Cancel</a>
+				
 	
 			{{ Form::close() }}
 		</td>
 	</tr>
-</table>		
+</table>
+<a href="/exercise/index" class="btn btn-default">Cancel</a>		
 </div>
 @stop

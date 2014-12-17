@@ -17,7 +17,8 @@
 		{{ Form::hidden('id',$exercise['id']); }}
 		
 		{{ Form::label('desc','Edit Exercise:') }}
-		{{ Form::text('desc', $exercise['desc']) }}
+
+		<input name="desc" type="text" value="{{{$exercise['desc']}}}" id="desc">
 			
 	    {{ Form::submit('Submit', array('class' => 'btn btn-default')) }}
 		<a href="/exercise/index" class="btn btn-default">Cancel</a>

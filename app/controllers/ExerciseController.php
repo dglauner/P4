@@ -45,7 +45,7 @@ class ExerciseController extends BaseController
 		}
     	
     	$exercise = new Exercise;
-		$exercise->desc = Input::get('title');
+		$exercise->desc = filter_var(Input::get('title'), FILTER_SANITIZE_STRING);
 		$exercise->user()->associate(Auth::user()); 
 		
 		try {
@@ -86,6 +86,7 @@ class ExerciseController extends BaseController
 
     public function postEdit()
     {
+    	try {
     	# Step 1) Define the rules
 		$rules = array(
 			'desc' => 'required'
@@ -104,7 +105,7 @@ class ExerciseController extends BaseController
 		}
 
     	
-		try {
+
 	        $exercise = Exercise::findOrFail(Input::get('id'));
 	    }
 	    catch(exception $e) {
@@ -116,8 +117,8 @@ class ExerciseController extends BaseController
 				->withErrors($errorvalue);
 
 	    }    	
-    	
-		$exercise->desc = Input::get('desc');
+	    
+		$exercise->desc = filter_var(Input::get('desc'), FILTER_SANITIZE_STRING);
 		
 		try {
 			$exercise->save();

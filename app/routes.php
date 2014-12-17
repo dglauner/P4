@@ -161,10 +161,13 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/category/update/{id}', 'CategoryController@getUpdate');
 	Route::post('/category/update', 'CategoryController@postUpdate');
 	/* Results Stuff */
-	Route::get('/result/add', 'ResultController@getAdd');
+	Route::get('/result/add/{id}', 'ResultController@getAdd');
 	Route::post('/result/add', 'ResultController@postAdd');
 	Route::get('/result/index/{id}', 'ResultController@getIndex');
 	Route::post('/result/index', 'ResultController@postIndex');
+	Route::get('/result/update', 'ResultController@getUpdate');
+	Route::post('/result/update', 'ResultController@postUpdate');
+
 
 });
 

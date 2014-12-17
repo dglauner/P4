@@ -16,14 +16,14 @@ class CategoryController extends BaseController
         {
         $exercise = Exercise::with('categories')
         	->where('user_id', '=', Auth::id())
-        	->find($id);
+        	->findorfail($id);
         }
     	catch (Exception $e)
     	{
 			$errorvalue = Helper::getErrorMessage($e);
 
 			return Redirect::to('/exercise/index')
-				->with('flash_message', 'Failed; please try again.')
+				->with('flash_message', 'Exercise not found, please try again.')
 				->withErrors($errorvalue);
 
     	}
@@ -91,15 +91,15 @@ class CategoryController extends BaseController
     
 	public function postAdd()
     {
-    	# Step 1) Define the rules
+
 		$rules = array(
-			'desc' => 'required'
+			'desc' => 'required|max:255'
 		);
 
-		# Step 2)
+
 		$validator = Validator::make(Input::all(), $rules);
 
-		# Step 3
+
 		if($validator->fails()) {
 
 			return Redirect::to('/category/add')
@@ -109,9 +109,10 @@ class CategoryController extends BaseController
 		}
 
     	$category = new Category;
-		$category->desc = Input::get('desc');
+		
 		try
 		{
+			$category->desc = filter_var(Input::get('desc'), FILTER_SANITIZE_STRING);
 			$category->save();
 		}
     	catch (Exception $e)
@@ -168,11 +169,25 @@ class CategoryController extends BaseController
     
 	public function postUpdate()
     {
+		$rules = array(
+			'desc' => 'required|max:255'
+		);
+
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails()) {
+
+			return Redirect::to('/category/update/'.Input::get('id'))
+				->with('flash_message', 'Update up failed; please fix the errors listed below.')
+				->withInput()
+				->withErrors($validator);
+		}
+
         try
         {
         	$id = Input::get('id');
         	$category = Category::findorfail($id);  
-        	$category->desc = Input::get('desc');
+        	$category->desc = filter_var(Input::get('desc'), FILTER_SANITIZE_STRING);
 			$category->save();
 
         }
@@ -180,8 +195,8 @@ class CategoryController extends BaseController
     	{
 			$errorvalue = Helper::getErrorMessage($e);
 
-			return Redirect::to('/exercise/index')
-				->with('flash_message', 'Update failed; please try again.')
+			return Redirect::to('/category/update/'.Input::get('id'))
+				->with('flash_message', 'Update failed; please fix the errors listed below.')
 				->withInput()
 				->withErrors($errorvalue);
 

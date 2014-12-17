@@ -2,6 +2,7 @@
 class Helper {
     public static function getErrorMessage(Exception $e) {
 
+        /* A helper to output user friendly error messages from database errors */
         if(str_contains($e->getMessage(), 'Duplicate entry') == true) 
 		{
 			$message = 'Duplicate entry not allowed';

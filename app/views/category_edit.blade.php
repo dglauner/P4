@@ -20,7 +20,7 @@
 			@foreach($categories as $category)
 			  <div class="checkbox">
 			    <label>
-			      <input type='checkbox' {{ $category['checked'] }} value='{{ $category['id'] }}' name='cats[]'/> {{ $category['desc'] }}
+			      <input type='checkbox' {{ $category['checked'] }} value='{{ $category['id'] }}' name='cats[]'/> {{{ $category['desc'] }}}
 			    </label>
 			  </div>
 			@endforeach	
