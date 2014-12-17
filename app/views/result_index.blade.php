@@ -25,12 +25,9 @@
 					<td>{{{$result['sets']}}}</td>
 					<td>{{{$result['reps']}}}</td>
 					<td>
-						{{ Form::open(array('url' => '/result/update','method' => 'GET')) }}
-							{{ Form::hidden('eid',$exercise['id']) }}
-							{{ Form::hidden('rid',$result['id']) }}
-	
-						    {{ Form::submit('Edit', array('class' => 'btn btn-default')) }}
-						{{ Form::close() }}
+						<a href="/result/update?eid={{$exercise['id']}}&rid={{$result['id']}}" class="btn btn-default">Edit</a>
+						
+						<a href="/result/delete?eid={{$exercise['id']}}&rid={{$result['id']}}" class="btn btn-default">Delete</a>					
 					</td>
 				</tr>
 		    @endforeach   

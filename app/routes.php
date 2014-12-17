@@ -167,7 +167,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('/result/index', 'ResultController@postIndex');
 	Route::get('/result/update', 'ResultController@getUpdate');
 	Route::post('/result/update', 'ResultController@postUpdate');
-
+	Route::get('/result/delete', 'ResultController@getDelete');
 
 });
 

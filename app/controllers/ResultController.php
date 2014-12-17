@@ -180,5 +180,39 @@ class ResultController extends BaseController
     	return Redirect::to('/result/index/'.Input::get('eid'));
     }
 
+    public function getDelete()
+    {        	
+ 	  try
+ 	  {
+		/* validate the user's delete request */
+		$results = DB::select('select count(*) as count
+								from exercises e, results r
+								where e.id = r.exercise_id
+								and e.user_id = ?
+								and e.id = ?
+								and r.id = ?', array(Auth::id(),Input::get('eid'),Input::get('rid')));
+								
+		if($results[0]->count != 1)
+		{
+			throw new exception('Result Not Found');
+		}	
+      }
+      catch (Exception $e)
+      {
+      	$errorvalue = Helper::getErrorMessage($e);
+
+		return Redirect::to('/exercise/index/')
+		->with('flash_message', 'Invaild Request:')
+		->withErrors($errorvalue);
+      }
+		
+
+      Result::destroy(Input::get('rid'));
+
+
+	  return Redirect::to('/result/index/'.Input::get('eid'));
+
+    }
+
 
 }
