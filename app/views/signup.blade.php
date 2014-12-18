@@ -11,7 +11,7 @@
 		
 		    {{Form::label('email', 'E-Mail Address')}}
 		    <br/>
-		    {{ Form::text('email') }}
+		    {{ Form::text('email','', array('autofocus'))}}
 		    <br/><br/>
 		    {{Form::label('password', 'password')}}
 		    <br/>

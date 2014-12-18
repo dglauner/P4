@@ -10,7 +10,7 @@
 <h3>Please Log In To Your Account</h3>
 	{{Form::open(['url' => '/login', 'method' => 'post', 'class' => 'form-horizontal'])}}  
 	    {{Form::label('email', 'E-Mail Address')}}<br/>
-		{{Form::email('email', '', array('placeholder' => 'Email'))}}
+		{{Form::email('email', '', array('placeholder' => 'Email', 'autofocus'))}}
 		<br/>
 		{{Form::label('password', 'password')}}<br/>
 		{{Form::password('password', array('placeholder' => 'Password'))}}

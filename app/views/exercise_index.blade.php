@@ -12,7 +12,7 @@
 	<thead>
 		<tr>
 			<td>Exercise</td>
-			<td>Delete</td>
+			<td>&nbsp;</td>
 			<td>Categories</td>
 			<td>Recent Results</td>
 		</tr>
@@ -27,7 +27,7 @@
 		    	</td>
 		    	<td>
 		    		{{ Form::token() }}
-		    		<a id="AjaxDelete{{$exercise['id']}}" title="Delete" class="btn btn-default">Delete</a>
+		    		<a id="AjaxDelete{{$exercise['id']}}" title="Delete This Exercise" class="btn btn-default">Delete</a>
 		    	</td>
 		    	<td>
 				    @foreach($exercise->categories as $category)	

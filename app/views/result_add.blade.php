@@ -11,7 +11,7 @@
 		{{ Form::hidden('id',$exercise['id']) }}
 		<table><tr>
 		<td class="text-right">{{ Form::label('work_out_date','Work Out Date:') }}&nbsp;</td>
-		<td>{{ Form::text('work_out_date') }}</td>
+		<td>{{ Form::text('work_out_date','', array('autofocus')) }}</td>
 		</tr><tr>
 		<td class="text-right">{{ Form::label('weight','Weight:') }}&nbsp;</td>
 		<td>{{ Form::text('weight') }}</td>

@@ -15,7 +15,7 @@
 		{{ Form::open(array('url' => '/exercise/add')) }}
 		
 			{{ Form::label('title','Add New Exercise:') }}
-			{{ Form::text('title') }}
+			{{ Form::text('title','',array('autofocus')) }}
 				
 		    {{ Form::submit('Save' , array('class' => 'btn btn-default')) }}
 			<a href="/exercise/index" class="btn btn-default">Cancel</a>

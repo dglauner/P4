@@ -18,7 +18,7 @@
 		
 		{{ Form::label('desc','Edit Exercise:') }}
 
-		<input name="desc" type="text" value="{{{$exercise['desc']}}}" id="desc">
+		<input name="desc" type="text" value="{{{$exercise['desc']}}}" id="desc" autofocus="autofocus">
 			
 	    {{ Form::submit('Submit', array('class' => 'btn btn-default')) }}
 		<a href="/exercise/index" class="btn btn-default">Cancel</a>

@@ -26,10 +26,8 @@
 			{{ Form::open(array('url' => '/category/add')) }}
 			
 				{{ Form::label('desc','New Category:') }}
-				{{ Form::text('desc'); }}
-					
+				{{ Form::text('desc','',array('autofocus')) }}
 			    {{ Form::submit('Save' , array('class' => 'btn btn-default')) }}
-				
 	
 			{{ Form::close() }}
 		</td>
