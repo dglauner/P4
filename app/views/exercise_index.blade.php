@@ -35,15 +35,16 @@
 				    @endforeach
 				    <a title="Set Categories For This Exercise" href="/category/edit/{{$exercise['id']}}" class="btn btn-default">Set</a>
 			    </td>
-			    <td><a title="Add or Edit Results for this exercise" href="/result/index/{{$exercise['id']}}" class="btn btn-default btn-block" />
+			    <td><a title="Add or Edit Results for this exercise" href="/result/index/{{$exercise['id']}}" class="btn btn-default btn-block">
 			    	@if($exercise->results->count() > 0)
 					    Date: {{ date('m/d/Y', strtotime($exercise->results->sortByDesc('work_out_date')->first()['work_out_date']))}}<br/>
 				    	Weight:{{$exercise->results->first()['weight']}}<br/>
 				    	Sets:{{$exercise->results->first()['sets']}}<br/>
-				    	Reps:{{$exercise->results->first()['reps']}}</a>
+				    	Reps:{{$exercise->results->first()['reps']}}
 			    	@else
 			    		Click to add Results!
 			    	@endif
+			    	</a>
 			    </td>
 			</tr>
 		    @endforeach
