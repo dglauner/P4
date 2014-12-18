@@ -38,7 +38,7 @@ class Helper {
     	}
     	catch(Exception $e)
     	{
-    		//on error resume next
+    		//Do Nothing
     	}
     }
 
@@ -56,7 +56,7 @@ class Helper {
     	}
     	catch(Exception $e)
     	{
-    		//on error resume next
+    		//Do Nothing
     	}
 
     }

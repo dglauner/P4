@@ -20,16 +20,15 @@ class UserController extends BaseController {
 
     public function postSignup() {
 		
-		# Step 1) Define the rules
+
 		$rules = array(
 			'email' => 'required|email|unique:users,email',
 			'password' => 'required|min:6'
 		);
 
-		# Step 2)
 		$validator = Validator::make(Input::all(), $rules);
 
-		# Step 3
+
 		if($validator->fails()) {
 
 			return Redirect::to('/signup')
@@ -68,11 +67,23 @@ class UserController extends BaseController {
 
     public function postLogin() {
     
-    
+		$rules = array(
+			'email' => 'required|email',
+			'password' => 'required'
+		);
+
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails()) {
+
+			return Redirect::to('/login')
+				->with('flash_message', 'Login failed; please fix the errors listed below.')
+				->withInput()
+				->withErrors($validator);
+		}
     
 		$credentials = Input::only('email', 'password');
 
-		# Note we don't have to hash the password before attempting to auth - Auth::attempt will take care of that for us
 		if (Auth::attempt($credentials, $remember = true)) {
 			return Redirect::intended('/exercise/index')->with('flash_message', 'Welcome Back!');
 		}
@@ -86,10 +97,10 @@ class UserController extends BaseController {
     
     
     public function getLogout(){
-        # Log out
+
 	    Auth::logout();
 	
-	    # Send them to the homepage
+
 	    return Redirect::to('/');
 
     }

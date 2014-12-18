@@ -20,13 +20,14 @@
 	<tbody>
 		
 		    @foreach($exercises as $exercise)
-		    <tr>	
+		    <tr id="row{{$exercise['id']}}">	
 		    	<td>
 		    		<a title="Edit This Exercise" href="/exercise/edit/{{$exercise['id']}}" class="btn  btn-block btn-primary">{{{$exercise['desc']}}}</a>
 		    		
 		    	</td>
 		    	<td>
-		    		<a title="Delete This Exercise" href="/exercise/delete/{{$exercise['id']}}" class="btn btn-default">Delete</a>
+		    		{{ Form::token() }}
+		    		<a id="AjaxDelete{{$exercise['id']}}" title="Delete" class="btn btn-default">Delete</a>
 		    	</td>
 		    	<td>
 				    @foreach($exercise->categories as $category)	
@@ -36,7 +37,7 @@
 			    </td>
 			    <td><a title="Add or Edit Results for this exercise" href="/result/index/{{$exercise['id']}}" class="btn btn-default btn-block">
 			    	@if($exercise->results->count() > 0)
-					    Date:{{ date('m/d/Y', strtotime($exercise->results->sortByDesc('work_out_date')->first()['work_out_date']))}}<br/>
+					    Date: {{ date('m/d/Y', strtotime($exercise->results->sortByDesc('work_out_date')->first()['work_out_date']))}}<br/>
 				    	Weight:{{$exercise->results->first()['weight']}}<br/>
 				    	Sets:{{$exercise->results->first()['sets']}}<br/>
 				    	Reps:{{$exercise->results->first()['reps']}}</a>
@@ -53,3 +54,10 @@
 <a title="Add A New Category" href="/category/add" class="btn btn-default">Add/edit Categories</a>
 </div>
 @stop
+
+@section('/body')
+    
+    <script src="/js/search.js"></script>
+
+@stop
+

@@ -17,7 +17,7 @@
 			{{ Form::hidden('id',$category['id']) }}
 			
 			{{ Form::label('desc','Update Catagory:') }}
-			<input name="desc" type="text" value="{{{$category['desc']}}}" id="desc">
+			<input name="desc" type="text" value="{{{$category['desc']}}}" id="desc"/>
 				
 		    {{ Form::submit('Submit', array('class' => 'btn btn-default')) }}
 			<a href="/category/add" class="btn btn-default">Cancel</a>

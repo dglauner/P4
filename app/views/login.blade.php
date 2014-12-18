@@ -6,30 +6,16 @@
 
 @section('content')
 
-	@foreach($errors->all() as $message)
-		<div class='error'>{{ $message }}</div>
-	@endforeach
-
+<div class="jumbotron">
+<h3>Please Log In To Your Account</h3>
 	{{Form::open(['url' => '/login', 'method' => 'post', 'class' => 'form-horizontal'])}}  
-		<div class="control-group">
-			{{Form::label('email', 'E-Mail Address', array('class' => 'control-label'))}}
-			<div class="controls">
-				{{Form::email('email', '', array('class' => 'form-control', 'placeholder' => 'Email'))}}
-			</div>
-		</div>
-		<div class="control-group">
-		{{Form::label('password', 'password', array('class' => 'control-label'))}}
-			<div class="controls">
-				{{Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password'))}}
-			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				{{Form::submit('Login', array('class' => 'btn'))}}
-			</div>
-		</div>
+	    {{Form::label('email', 'E-Mail Address')}}<br/>
+		{{Form::email('email', '', array('placeholder' => 'Email'))}}
+		<br/>
+		{{Form::label('password', 'password')}}<br/>
+		{{Form::password('password', array('placeholder' => 'Password'))}}
+		<br/><br/>
+		{{Form::submit('Login', array('class' => 'btn btn-default'))}}
 	{{Form::close()}}
-	
-	
-	
+</div>	
 @stop

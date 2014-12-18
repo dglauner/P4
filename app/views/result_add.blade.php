@@ -6,6 +6,7 @@
 
 @section('content')
 <div class="jumbotron">
+<h2>Add A New Result For {{$exercise['desc']}}</h2>
 	{{ Form::open(array('url' => '/result/add')) }}		
 		{{ Form::hidden('id',$exercise['id']) }}
 		<table><tr>

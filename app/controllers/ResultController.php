@@ -185,6 +185,7 @@ class ResultController extends BaseController
  	  try
  	  {
 		/* validate the user's delete request */
+		/* A user can only delete there own record */
 		$results = DB::select('select count(*) as count
 								from exercises e, results r
 								where e.id = r.exercise_id
@@ -205,10 +206,8 @@ class ResultController extends BaseController
 		->with('flash_message', 'Invaild Request:')
 		->withErrors($errorvalue);
       }
-		
 
       Result::destroy(Input::get('rid'));
-
 
 	  return Redirect::to('/result/index/'.Input::get('eid'));
 

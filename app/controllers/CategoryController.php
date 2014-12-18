@@ -69,7 +69,6 @@ class CategoryController extends BaseController
     		if(in_array($category['id'], $cats)) 
     		{
                 Helper::addCategory($category['id'], $exId);
-
 			}  
 			else
 			{
@@ -92,16 +91,12 @@ class CategoryController extends BaseController
 	public function postAdd()
     {
 
-		$rules = array(
-			'desc' => 'required|max:255'
-		);
-
+		$rules = array('desc' => 'required|max:255');
 
 		$validator = Validator::make(Input::all(), $rules);
 
-
-		if($validator->fails()) {
-
+		if($validator->fails()) 
+		{
 			return Redirect::to('/category/add')
 				->with('flash_message', 'Add failed; Please try again.')
 				->withInput()
@@ -169,20 +164,18 @@ class CategoryController extends BaseController
     
 	public function postUpdate()
     {
-		$rules = array(
-			'desc' => 'required|max:255'
-		);
+		$rules = array('desc' => 'required|max:255');
 
 		$validator = Validator::make(Input::all(), $rules);
 
-		if($validator->fails()) {
+		if($validator->fails()) 
+		{
 
 			return Redirect::to('/category/update/'.Input::get('id'))
 				->with('flash_message', 'Update up failed; please fix the errors listed below.')
 				->withInput()
 				->withErrors($validator);
 		}
-
         try
         {
         	$id = Input::get('id');
