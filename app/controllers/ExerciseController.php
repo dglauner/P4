@@ -27,7 +27,7 @@ class ExerciseController extends BaseController
     public function postAdd()
     {
 
-		$rules = array('title' => 'required');
+		$rules = array('title' => 'required|max:255');
 
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -87,8 +87,7 @@ class ExerciseController extends BaseController
     {
     	try 
     	{
-			$rules = array(
-				'desc' => 'required');
+			$rules = array('desc' => 'required|max:255');
 	
 			$validator = Validator::make(Input::all(), $rules);
 	

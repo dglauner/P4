@@ -25,9 +25,9 @@
 					<td>{{{$result['sets']}}}</td>
 					<td>{{{$result['reps']}}}</td>
 					<td>
-						<a href="/result/update?eid={{$exercise['id']}}&rid={{$result['id']}}" class="btn btn-default">Edit</a>
+						<a href="/result/update?eid={{$exercise['id']}}&amp;rid={{$result['id']}}" class="btn btn-default">Edit</a>
 						
-						<a href="/result/delete?eid={{$exercise['id']}}&rid={{$result['id']}}" class="btn btn-default">Delete</a>					
+						<a href="/result/delete?eid={{$exercise['id']}}&amp;rid={{$result['id']}}" class="btn btn-default">Delete</a>					
 					</td>
 				</tr>
 		    @endforeach   

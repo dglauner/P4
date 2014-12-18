@@ -91,7 +91,7 @@ class CategoryController extends BaseController
 	public function postAdd()
     {
 
-		$rules = array('desc' => 'required|max:255');
+		$rules = array('desc' => 'required|alpha_dash|max:255');
 
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -164,7 +164,7 @@ class CategoryController extends BaseController
     
 	public function postUpdate()
     {
-		$rules = array('desc' => 'required|max:255');
+		$rules = array('desc' => 'required|alpha_dash|max:255');
 
 		$validator = Validator::make(Input::all(), $rules);
 
